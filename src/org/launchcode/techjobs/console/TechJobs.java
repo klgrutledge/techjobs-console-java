@@ -12,7 +12,7 @@ public class TechJobs {
 
     private static Scanner in = new Scanner(System.in);
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -64,15 +64,9 @@ public class TechJobs {
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
 
-                    }
+                } else {
 
-                if (!JobData.findByValue(searchTerm).isEmpty()) {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
-
-
-                    } else {
-                    String m = "No data to display";
-                    System.out.println(m);
 
                 }
             }
@@ -113,20 +107,25 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while(!validChoice);
+        } while (!validChoice);
 
         return choiceKeys[choiceIdx];
     }
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        for (HashMap<String, String> job_entry : someJobs) { //loop through ArrayList of job entries
-            System.out.println("*****");
-            for (Map.Entry<String, String> job_descriptor : job_entry.entrySet()) { //loop through job descriptors of each job entryfor (job_entry : someJobs) {
+        if (!someJobs.isEmpty()) {
+
+            for (HashMap<String, String> job_entry : someJobs) { //loop through ArrayList of job entries
+                System.out.println("*****");
+                for (Map.Entry<String, String> job_descriptor : job_entry.entrySet()) { //loop through job descriptors of each job entryfor (job_entry : someJobs) {
                     System.out.println(job_descriptor.getKey() + ": " + job_descriptor.getValue()); //print "job_entry_descriptor (keys from HashMap) : value (from HashMap for each job_entry)"
                 }
-            System.out.println("*****" + "\n");
+                System.out.println("*****" + "\n");
             }
+        } else {
+            System.out.println("No data to display");
         }
     }
+}
 

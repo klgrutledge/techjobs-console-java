@@ -85,14 +85,12 @@ public class JobData {
                 jobs.add(row);
             }
 
-            if (!lowercase_aValue.contains(lowercase_value)) {
-                System.out.println("No data to display");
-
-            }
-
         }
+
         return jobs;
     }
+
+
 
 
 
